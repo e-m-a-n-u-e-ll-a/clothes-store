@@ -5,7 +5,7 @@ let garmentSchema = new mongoose.Schema({
     img: String,
     description: String,
     price: Number,
-    year: Number,
+    type: String,
     comments: [{
         type: mongoose.Types.ObjectId,
         ref: 'Comment'
