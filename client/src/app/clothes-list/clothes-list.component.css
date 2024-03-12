@@ -1,0 +1,58 @@
+.container {
+    display: flex;
+}
+
+.catalog {
+    padding: 20px;
+}
+
+.item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    gap: 2em;
+}
+
+.item img {
+    display: block;
+    width: 100%;
+    height: 40vh;
+    border-radius: 5px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+
+.item .description {
+    font-weight: bold;
+}
+
+.item .price {
+    font-weight: bold;
+    color: #333;
+}
+.item .type{
+    font-weight: bold;
+}
+
+.item .comments {
+    
+}
+.btn{
+    margin-top: 2em;
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    border-radius: 1em;
+    padding: 0.6em;
+}
+.btn a{
+    text-decoration: none;
+    color: white;
+}
