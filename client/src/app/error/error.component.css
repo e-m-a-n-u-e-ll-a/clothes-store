@@ -1,0 +1,22 @@
+.container {
+    width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.error {
+    font-size: 55px;
+}
+
+.message {
+    font-size: 26px;
+}
+
+div img {
+    display: block;
+    width: 700px;
+    height: 400px;
+}

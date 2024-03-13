@@ -16,8 +16,14 @@ h1 {
     margin: 0;
     font-size: 24px;
 }
-h1 span{
+
+h1 span {
     font-family: 'Brush Script MT', cursive;
+}
+
+h1 a {
+    text-decoration: none;
+    color: white;
 }
 
 nav ul {

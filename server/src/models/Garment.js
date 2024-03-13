@@ -3,9 +3,11 @@ let mongoose = require('mongoose');
 let garmentSchema = new mongoose.Schema({
     model: String,
     img: String,
-    description: String,
+    color: String,
     price: Number,
     type: String,
+    size: String,
+    description: String,
     comments: [{
         type: mongoose.Types.ObjectId,
         ref: 'Comment'

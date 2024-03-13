@@ -9,20 +9,22 @@ import {HttpClientModule} from '@angular/common/http';
 import { ClothesListComponent } from './main-content/clothes-list/clothes-list.component'
 import { UserModule } from './user/user.module';
 import { MainContentModule } from './main-content/main-content.module';
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
     ClothesListComponent,
+    ErrorComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     CoreModule,
     HttpClientModule,
     UserModule,
-    MainContentModule
+    MainContentModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
