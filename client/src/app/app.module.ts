@@ -4,9 +4,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { MainComponent } from './main/main.component';
+import { MainComponent } from './main-content/main/main.component';
 import {HttpClientModule} from '@angular/common/http';
-import { ClothesListComponent } from './clothes-list/clothes-list.component'
+import { ClothesListComponent } from './main-content/clothes-list/clothes-list.component'
+import { UserModule } from './user/user.module';
+import { MainContentModule } from './main-content/main-content.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { ClothesListComponent } from './clothes-list/clothes-list.component'
     BrowserModule,
     AppRoutingModule,
     CoreModule,
-    HttpClientModule
+    HttpClientModule,
+    UserModule,
+    MainContentModule
   ],
   providers: [],
   bootstrap: [AppComponent]

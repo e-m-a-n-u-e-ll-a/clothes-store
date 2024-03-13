@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../api.service';
-import { Grament } from '../types/garment';
+import { ApiService } from '../../api.service';
+import { Grament } from '../../types/garment';
 
 @Component({
   selector: 'app-clothes-list',
