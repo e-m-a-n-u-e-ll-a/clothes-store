@@ -1,9 +1,23 @@
 <div class="container">
     <h2>Регистрация</h2>
-    <form>
-        <input type="text" placeholder="е-mail" required>
-        <input type="password" placeholder="Password" required>
-        <input type="password" placeholder="Repeat password" required>
+    <form [formGroup]="form">
+        <input type="text" placeholder="е-mail" name="email" formControlName="email" required>
+        <div *ngIf="form.get('email')?.touched">
+            <div *ngIf="form.get('email')?.errors?.['required']" style="color: red; margin-bottom: 2em;">Email is
+                required</div>
+            <div *ngIf="form.get('email')?.errors?.['emailValidator']" style="color: red; margin-bottom: 2em;">Invalid
+                email address</div>
+        </div>
+        <div formGroupName="passGroup">
+            <input type="password" placeholder="Password" name="password" formControlName="password" required>
+            <input type="password" placeholder="Repeat password" name="rePass" formControlName="rePass" required>
+        </div>
+        <div *ngIf="form.get('passGroup')?.get('rePass')?.touched">
+            <div
+                *ngIf="form.get('passGroup')?.errors?.['matchPasswords'] || form.get('formGroup')?.get('rePass')?.errors?.['required']"
+                style="color: red; margin-bottom: 2em;">
+                Passwords don't match</div>
+        </div>
         <input type="submit" value="Login">
     </form>
     <div class="link">

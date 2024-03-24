@@ -4,16 +4,19 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { UserRoutingModule } from './user-routing.module';
 import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AppEmailDirective } from './app-email.directive';
 
 
 
 @NgModule({
   declarations: [
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AppEmailDirective
   ],
   imports: [
-    CommonModule, UserRoutingModule, RouterModule
+    CommonModule, UserRoutingModule, RouterModule, FormsModule, ReactiveFormsModule
   ]
 })
 export class UserModule { }

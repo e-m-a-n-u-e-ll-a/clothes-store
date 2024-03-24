@@ -10,6 +10,8 @@ import { ClothesListComponent } from './main-content/clothes-list/clothes-list.c
 import { UserModule } from './user/user.module';
 import { MainContentModule } from './main-content/main-content.module';
 import { ErrorComponent } from './error/error.component';
+import { CreateComponent } from './create/create.component';
+import { AppEmailDirective } from './user/app-email.directive';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { ErrorComponent } from './error/error.component';
     MainComponent,
     ClothesListComponent,
     ErrorComponent,
+    CreateComponent,
+   
   ],
   imports: [
     BrowserModule,

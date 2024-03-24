@@ -1,5 +1,8 @@
 .container {
     display: flex;
+    flex-wrap: wrap;
+    width: 1600px;
+    margin: 0 auto;
 }
 
 .catalog {
@@ -16,7 +19,7 @@
 
 .item img {
     display: block;
-    width: 100%;
+    width: 300px;
     height: 40vh;
     border-radius: 5px;
 }

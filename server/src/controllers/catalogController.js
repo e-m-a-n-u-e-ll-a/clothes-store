@@ -17,11 +17,12 @@ router.get('/catalog', async (req, res) => {
 
 });
 
-router.post('/create', isAuth, async (req, res) => {
+router.post('/create', async (req, res) => {
+
     //console.log(req);
-    let createdPost = await clothesService.create({ ...req.body, _ownerId: req.user._id });
-    await userService.pushPost(req.user._id, createdPost)
-    // await carService.create(req.body);
+    await clothesService.create(req.body);
+    //await userService.pushPost(req.user._id, createdPost)
+    //await garmentService.create(req.body);
     res.json({ ok: true })
 });
 

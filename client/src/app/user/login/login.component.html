@@ -1,8 +1,18 @@
 <div class="container">
     <h2>Вход</h2>
-    <form>
-        <input type="text" placeholder="E-mail" required>
-        <input type="password" placeholder="Password" required>
+    <form #form="ngForm" (ngSubmit)="login(form)">
+        <p><input type="text" placeholder="E-mail" name="email" ngModel #email="ngModel" required
+                [appAppEmail]="['.bg', '.com']"></p>
+        <div *ngIf="email.touched">
+            <div *ngIf="email.errors?.['required']" style="color: red; margin-bottom: 2em;">Email is required!</div>
+            <div *ngIf="email.errors?.['emailValidator']" style="color: red;">|Email is not valid</div>
+        </div>
+        <p><input type="password" placeholder="Password" name="password" ngModel #password="ngModel" required
+                minlength="7"></p>
+        <div *ngIf="password.touched">
+            <div *ngIf="password.errors?.['required']" style="color: red; margin-bottom: 2em;">Password is required!</div>
+            <div *ngIf="password.errors?.['minlength']" style="color: red; margin-bottom: 2em;">Password must be at least 7 characters!</div>
+        </div>
         <input type="submit" value="Login">
     </form>
     <div class="link">

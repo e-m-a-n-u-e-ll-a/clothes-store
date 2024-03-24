@@ -12,4 +12,24 @@ export class ApiService {
     return this.http.get<Grament[]>(api);
 
   }
+  createPost(
+    model: string,
+    img: string,
+    color: string,
+    price: string,
+    type: string,
+    size: string,
+    description: string,) {
+    const api = 'http://localhost:3001/data/create';
+    let payload = {
+      model,
+      img,
+      color,
+      price,
+      type,
+      size,
+      description
+    }
+    return this.http.post<Grament>(api, payload);
+  }
 }

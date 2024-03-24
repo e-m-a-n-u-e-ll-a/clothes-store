@@ -1,0 +1,42 @@
+<div class="container">
+    <h2>Продайте ваша дреха</h2>
+    <div class="inner">
+        <form action="#">
+            <div class="form-group">
+                <label for="model">Вид:</label>
+                <input type="text" id="model" name="model" #model required>
+            </div>
+            <div class="form-group">
+                <label for="img">Снимка:</label>
+                <input type="text" id="img" name="img"  #img required>
+            </div>
+            <div class="form-group">
+                <label for="color">Цвят:</label>
+                <input type="text" id="color" name="color" #color required>
+            </div>
+            <div class="form-group">
+                <label for="price">Цена:</label>
+                <input type="number" id="price" name="price" #price>
+            </div>
+            <div class="form-group">
+                <label for="type">Пол:</label>
+                <input type="text" id="type" name="type" #gender required>
+            </div>
+            <div class="form-group">
+                <label for="size">Размер:</label>
+                <input type="text" id="size" name="size" #size required>
+            </div>
+            <div class="form-group">
+                <label for="description">Описание:</label>
+                <textarea id="description" name="description" #description required></textarea>
+            </div>
+            <div class="form-group"
+                (click)="createPost($event,model.value,img.value,color.value,price.value,gender.value,size.value,description.value)">
+                <input type="submit" value="Добави">
+            </div>
+        </form>
+        <div class="media"><img src="https://s.alicdn.com/@sc04/kf/H10bfae5fd1de42cb9ed68e3730c030aaQ.jpg_300x300.jpg"
+                alt=""></div>
+    </div>
+
+</div>

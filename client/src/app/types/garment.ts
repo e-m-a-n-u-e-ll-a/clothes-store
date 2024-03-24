@@ -3,7 +3,7 @@ export interface Grament{
     model: String,
     img: String,
     color: String,
-    price: Number,
+    price: string,
     type: String,
     size: String,
     description: String,
