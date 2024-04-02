@@ -4,16 +4,16 @@
         <p><input type="text" placeholder="E-mail" name="email" ngModel #email="ngModel" required
                 [appAppEmail]="['.bg', '.com']"></p>
         <div *ngIf="email.touched">
-            <div *ngIf="email.errors?.['required']" style="color: red; margin-bottom: 2em;">Email is required!</div>
-            <div *ngIf="email.errors?.['emailValidator']" style="color: red;">|Email is not valid</div>
+            <div *ngIf="email.errors?.['required']" style="color: red; margin-bottom: 2em;">Полето е задължително</div>
+            <div *ngIf="email.errors?.['emailValidator']" style="color: red;">Невалиден имейл адрес</div>
         </div>
         <p><input type="password" placeholder="Password" name="password" ngModel #password="ngModel" required
                 minlength="7"></p>
         <div *ngIf="password.touched">
-            <div *ngIf="password.errors?.['required']" style="color: red; margin-bottom: 2em;">Password is required!</div>
-            <div *ngIf="password.errors?.['minlength']" style="color: red; margin-bottom: 2em;">Password must be at least 7 characters!</div>
+            <div *ngIf="password.errors?.['required']" style="color: red; margin-bottom: 2em;">Полето е задължително</div>
+            <div *ngIf="password.errors?.['minlength']" style="color: red; margin-bottom: 2em;">Паролата трябва да бъде поне 7 символа!</div>
         </div>
-        <input type="submit" value="Login">
+        <div class="btn"><button [disabled]="form.invalid" [style]="{backgroundColor: form.invalid ? 'grey' : '#4caf50'}">Вход</button></div>  
     </form>
     <div class="link">
         Нямате профил? <a routerLink="/register">Регистрация</a>

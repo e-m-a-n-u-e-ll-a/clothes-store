@@ -5,7 +5,7 @@ let garmentSchema = new mongoose.Schema({
     img: String,
     color: String,
     price: String,
-    type: String,
+    gender: String,
     size: String,
     description: String,
     comments: [{

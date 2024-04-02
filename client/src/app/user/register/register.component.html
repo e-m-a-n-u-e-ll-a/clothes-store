@@ -13,12 +13,18 @@
             <input type="password" placeholder="Repeat password" name="rePass" formControlName="rePass" required>
         </div>
         <div *ngIf="form.get('passGroup')?.get('rePass')?.touched">
-            <div
-                *ngIf="form.get('passGroup')?.errors?.['matchPasswords'] || form.get('formGroup')?.get('rePass')?.errors?.['required']"
+            <div *ngIf="form.get('passGroup')?.errors?.['matchPasswords'] || form.get('formGroup')?.get('rePass')?.errors?.['required']"
                 style="color: red; margin-bottom: 2em;">
-                Passwords don't match</div>
+                Passwords don't match</div> 
         </div>
-        <input type="submit" value="Login">
+        <div *ngIf="form.get('passGroup')?.get('password')?.touched">
+            <div *ngIf="form.get('passGroup')?.get('password')?.errors?.['minlength']" style="color: red; margin-bottom: 2em;">
+                Password should be at least 7 characters</div>  
+        </div>
+
+        <div class="btn"><button [disabled]="form.invalid"
+                [style]="{backgroundColor: form.invalid ? 'grey' : '#4caf50'}" (click)="register()">Регистрация</button>
+        </div>
     </form>
     <div class="link">
         Вече имате профил? <a routerLink="/login">Вход</a>

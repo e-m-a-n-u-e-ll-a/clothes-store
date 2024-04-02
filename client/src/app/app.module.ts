@@ -12,6 +12,7 @@ import { MainContentModule } from './main-content/main-content.module';
 import { ErrorComponent } from './error/error.component';
 import { CreateComponent } from './create/create.component';
 import { AppEmailDirective } from './user/app-email.directive';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AppEmailDirective } from './user/app-email.directive';
     HttpClientModule,
     UserModule,
     MainContentModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

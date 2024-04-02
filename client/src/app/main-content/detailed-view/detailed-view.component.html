@@ -1,16 +1,94 @@
-<div class="container">
+<div class="container" *ngIf="!showEdit">
     <h2>Детайли</h2>
     <div class="garment-details">
+        <div class="flexible">
         <div class="garment-image">
-            <img src="garment.jpg" alt="Garment Image">
+            <img src={{garment.img}} alt="Garment Image">
         </div>
         <div class="garment-info">
-            <p><strong>Модел:</strong> Shirt</p>
-            <p><strong>Цвят:</strong> Blue</p>
-            <p><strong>Цена:</strong> $20</p>
-            <p><strong>Пол:</strong> Men's</p>
-            <p><strong>Размер:</strong> Medium</p>
-            <p><strong>Описание:</strong> This stylish shirt is made from high-quality fabric and is perfect for casual wear.</p>
+            <p><strong>Модел:</strong> {{garment.model}}</p>
+            <p><strong>Цвят:</strong> {{garment.color}}</p>
+            <p><strong>Цена:</strong> {{garment.price}}лв</p>
+            <p><strong>Пол:</strong> {{garment.gender}}</p>
+            <p><strong>Размер:</strong> {{garment.size}}</p>
+            <p><strong>Описание:</strong> {{garment.description}}</p>
+        </div>
+    </div>
+        <div class="btns" *ngIf="isLogged">
+           <div class="edit"><button class="edit-btn" (click)="toggleEditForm()">Редактирай</button></div>
+           <div class="delete"><button class="delete-btn">Изтрий</button></div>
+        </div>
+    </div>
+</div>
+
+<div class="container2" *ngIf="showEdit">
+    <h2>Реадктирай</h2>
+   <div class="inner">
+        <div class="inner">
+            <form [formGroup]="form" (ngSubmit)="save()">
+                <div class="form-group">
+                    <label for="model">Вид:</label>
+                    <input type="text" id="model" name="model" formControlName="model">
+                </div>
+                <div *ngIf="form.get('model')?.touched">
+                    <div *ngIf="form.get('model')?.errors?.['required']" style="color: red; margin-bottom: 1em;">Полето е задължително
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="img">Снимка:</label>
+                    <input type="text" id="img" name="img" formControlName="img">
+                </div>
+                <div *ngIf="form.get('img')?.touched">
+                    <div *ngIf="form.get('img')?.errors?.['required']" style="color: red; margin-bottom: 1em;">Полето е задължително
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="color">Цвят:</label>
+                    <input type="text" id="color" name="color" formControlName="color">
+                </div> <div *ngIf="form.get('color')?.touched">
+                    <div *ngIf="form.get('color')?.errors?.['required']" style="color: red; margin-bottom: 1em;">Полето е задължително</div>
+          </div>
+                <div class="form-group">
+                    <label for="price">Цена:</label>
+                    <input type="number" id="price" name="price" formControlName="price">
+                </div>
+                <div *ngIf="form.get('price')?.touched">
+                    <div *ngIf="form.get('price')?.errors?.['required']" style="color: red; margin-bottom: 1em;">Полето е задължително</div>
+                    <div *ngIf="form.get('price')?.errors?.['min']" style="color: red; margin-bottom: 1em;">Цената не може да бъде по-малко от 0</div>
+          </div>
+                <div class="form-group">
+                    <label for="gender">Пол</label>
+                    <select id="gender" name="gender" formControlName="gender">
+                        <option value="">Изберете пол</option>
+                        <option value="мъж">мъж</option>
+                        <option value="жена">жена</option>
+                    </select>
+                </div>
+                <div *ngIf="form.get('gender')?.touched">
+                    <div *ngIf="form.get('gender')?.errors?.['required']" style="color: red; margin-bottom: 1em;">Полето е задължително</div>
+          </div>
+                <div class="form-group">
+                    <label for="size">Размер:</label>
+                    <input type="text" id="size" name="size" formControlName="size">
+                </div>
+                <div *ngIf="form.get('size')?.touched">
+                    <div *ngIf="form.get('size')?.errors?.['required']" style="color: red; margin-bottom: 1em;">Полето е задължително</div>
+          </div>
+                <div class="form-group">
+                    <label for="description">Описание:</label>
+                    <textarea id="description" name="description" formControlName="description"></textarea>
+                </div>
+                <div *ngIf="form.get('description')?.touched">
+                    <div *ngIf="form.get('description')?.errors?.['required']" style="color: red; margin-bottom: 1em;">Полето е задължително</div>
+                    <div *ngIf="form.get('description')?.errors?.['minLength']" style="color: red; margin-bottom: 1em;">Описанието трябва да бъде поне 10 символа!</div>
+          </div>
+                <div class="btn">
+                    <button [disabled]="form.invalid" [style]="{backgroundColor: form.invalid ? 'grey' : '#4caf50'}">Запазване</button>
+    
+                </div>
+            </form>
+            <div class="media"><img src={{garment.img}}
+                    alt="img"></div>
         </div>
     </div>
 </div>

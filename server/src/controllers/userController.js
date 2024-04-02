@@ -15,6 +15,7 @@ router.post('/register', async (req, res) => {
             email: user.email,
             accessToken: token
         });
+        
     } catch (error) {
         res.json({
             type: 'error',

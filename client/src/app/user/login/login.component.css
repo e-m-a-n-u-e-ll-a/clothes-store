@@ -13,8 +13,7 @@ h2 {
 }
 
 input[type="text"],
-input[type="password"],
-input[type="submit"] {
+input[type="password"] {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
@@ -22,14 +21,22 @@ input[type="submit"] {
     border-radius: 5px;
     box-sizing: border-box;
 }
-
-input[type="submit"] {
+.btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+button {
     background-color: #4caf50;
     color: #fff;
     cursor: pointer;
+    padding: 1em 2em;
+    border-radius: 0.5em;
 }
-
-input[type="submit"]:hover {
+button[disabled] {
+    cursor: not-allowed;
+  }
+button:hover {
     background-color: #45a049;
 }
 

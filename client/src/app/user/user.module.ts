@@ -6,6 +6,8 @@ import { UserRoutingModule } from './user-routing.module';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppEmailDirective } from './app-email.directive';
+import { UsererService } from './user.service';
+import { MainComponent } from '../main-content/main/main.component';
 
 
 
@@ -15,8 +17,9 @@ import { AppEmailDirective } from './app-email.directive';
     RegisterComponent,
     AppEmailDirective
   ],
+  providers: [UsererService],
   imports: [
-    CommonModule, UserRoutingModule, RouterModule, FormsModule, ReactiveFormsModule
+    CommonModule, UserRoutingModule, RouterModule, FormsModule, ReactiveFormsModule,
   ]
 })
 export class UserModule { }

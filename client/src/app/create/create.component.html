@@ -1,42 +1,71 @@
 <div class="container">
     <h2>Продайте ваша дреха</h2>
     <div class="inner">
-        <form action="#">
+        <form #form="ngForm"  (ngSubmit)="createPost(form)">
             <div class="form-group">
                 <label for="model">Вид:</label>
-                <input type="text" id="model" name="model" #model required>
+                <input type="text" id="model" name="model" #model="ngModel" ngModel required>
+            </div>
+            <div *ngIf="model.touched">
+                <div *ngIf="model.errors?.['required']" style="color: red; margin-bottom: 1em;">Полето е задължително
+                </div>
             </div>
             <div class="form-group">
                 <label for="img">Снимка:</label>
-                <input type="text" id="img" name="img"  #img required>
+                <input type="text" id="img" name="img" #img="ngModel" ngModel required>
+            </div>
+            <div *ngIf="img.touched">
+                <div *ngIf="img.errors?.['required']" style="color: red; margin-bottom: 1em;">Полето е задължително
+                </div>
             </div>
             <div class="form-group">
                 <label for="color">Цвят:</label>
-                <input type="text" id="color" name="color" #color required>
-            </div>
+                <input type="text" id="color" name="color" #color="ngModel" ngModel required>
+            </div> <div *ngIf="color.touched">
+                <div *ngIf="color.errors?.['required']" style="color: red; margin-bottom: 1em;">Полето е задължително</div>
+      </div>
             <div class="form-group">
                 <label for="price">Цена:</label>
-                <input type="number" id="price" name="price" #price>
+                <input type="number" id="price" name="price" #price="ngModel" ngModel min="0" required>
             </div>
+            <div *ngIf="price.touched">
+                <div *ngIf="price.errors?.['required']" style="color: red; margin-bottom: 1em;">Полето е задължително</div>
+                
+      </div>
             <div class="form-group">
-                <label for="type">Пол:</label>
-                <input type="text" id="type" name="type" #gender required>
+                <label for="gender">Пол</label>
+                <select id="gender" name="gender" #gender="ngModel" ngModel required>
+                    <option value="">Select Gender</option>
+                    <option value="мъж">мъж</option>
+                    <option value="жена">жена</option>
+                </select>
             </div>
+            <div *ngIf="gender.touched">
+                <div *ngIf="gender.errors?.['required']" style="color: red; margin-bottom: 1em;">Полето е задължително</div>
+      </div>
             <div class="form-group">
                 <label for="size">Размер:</label>
-                <input type="text" id="size" name="size" #size required>
+                <input type="text" id="size" name="size" #size="ngModel" ngModel required>
             </div>
+            <div *ngIf="size.touched">
+                <div *ngIf="size.errors?.['required']" style="color: red; margin-bottom: 1em;">Полето е задължително</div>
+      </div>
             <div class="form-group">
                 <label for="description">Описание:</label>
-                <textarea id="description" name="description" #description required></textarea>
+                <textarea id="description" name="description" #description="ngModel" ngModel minlength="10"
+                    required></textarea>
             </div>
-            <div class="form-group"
-                (click)="createPost($event,model.value,img.value,color.value,price.value,gender.value,size.value,description.value)">
-                <input type="submit" value="Добави">
+            <div *ngIf="description.touched">
+                <div *ngIf="description.errors?.['required']" style="color: red; margin-bottom: 1em;">Полето е задължително</div>
+                <div *ngIf="description.errors?.['minlength']" style="color: red; margin-bottom: 1em;">Описанието трябва да бъде поне 10 символа!</div>
+      </div>
+            <div class="btn">
+                <button [disabled]="form.invalid" [style]="{backgroundColor: form.invalid ? 'grey' : '#4caf50'}">Добави</button>
+
             </div>
         </form>
         <div class="media"><img src="https://s.alicdn.com/@sc04/kf/H10bfae5fd1de42cb9ed68e3730c030aaQ.jpg_300x300.jpg"
-                alt=""></div>
+                alt="img"></div>
     </div>
 
 </div>

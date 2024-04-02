@@ -22,6 +22,19 @@ h2 {
     width: 300px;
 }
 
+.form-group select {
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+
+}
+
 label {
     display: block;
     font-weight: bold;
@@ -45,17 +58,27 @@ input[type="file"] {
     box-sizing: border-box;
 }
 
-input[type="submit"] {
-    background-color: #4caf50;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-input[type="submit"]:hover {
+button {
+    background-color: #4caf50;
+    color: #fff;
+    cursor: pointer;
+    padding: 1em 2em;
+    border-radius: 0.5em;
+}
+
+
+button:hover {
     background-color: #45a049;
+}
+
+button[disabled] {
+    cursor: not-allowed;
 }
 
 div.media {

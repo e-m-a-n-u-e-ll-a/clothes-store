@@ -1,17 +1,20 @@
 <header>
     <div class="container">
-        <h1>Дрехи втора употреба  <span><a routerLink="/">ФАВОРИТ</a></span></h1>
+        <h1>Дрехи втора употреба <span><a routerLink="/">ФАВОРИТ</a></span></h1>
         <nav>
             <ul>
+                <li *ngIf="!isLogged"><a routerLink="/login">Вход</a></li>
+                <li *ngIf="!isLogged"><a routerLink="/register">Регистрация</a></li>
+
                 <li><a routerLink="/catalog">Дамска мода</a></li>
-                <li><a href="#">Мъжка мода мода</a></li>
                 <li><a href="#">За нас</a></li>
                 <li><a href="#">Контакти</a></li>
 
-                <li><a routerLink="/create">Продай своя дреха</a></li>
 
-                <li><a routerLink="/login">Вход</a></li>
-                <li><a routerLink="/register">Регистрация</a></li>
+                <li *ngIf="isLogged"><a routerLink="/create">Продай своя дреха</a></li>
+                <li *ngIf="isLogged"><a (click)="logout()" >Изход</a></li>
+
+
             </ul>
         </nav>
     </div>
