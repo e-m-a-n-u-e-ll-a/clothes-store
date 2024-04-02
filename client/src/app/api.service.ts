@@ -32,4 +32,17 @@ export class ApiService {
     }
     return this.http.post<Grament>(api, payload);
   }
+  getPost(_id: string) {
+    const api = `http://localhost:3001/data/catalog/${_id}`;
+
+    return this.http.get<Grament>(api);
+  }
+  editPost(_id: string, data: Partial<Grament>) {
+    const api = `http://localhost:3001/data/catalog/${_id}/edit`
+    return this.http.put<Grament>(api, data)
+  }
+  deletePost(_id: string){
+   const api = `http://localhost:3001/data/catalog/${_id}/delete`;
+   return this.http.delete<Grament>(api)
+  }
 }

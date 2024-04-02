@@ -16,7 +16,7 @@
     </div>
         <div class="btns" *ngIf="isLogged">
            <div class="edit"><button class="edit-btn" (click)="toggleEditForm()">Редактирай</button></div>
-           <div class="delete"><button class="delete-btn">Изтрий</button></div>
+           <div class="delete"><button class="delete-btn" (click)="del()">Изтрий</button></div>
         </div>
     </div>
 </div>
@@ -80,14 +80,14 @@
                 </div>
                 <div *ngIf="form.get('description')?.touched">
                     <div *ngIf="form.get('description')?.errors?.['required']" style="color: red; margin-bottom: 1em;">Полето е задължително</div>
-                    <div *ngIf="form.get('description')?.errors?.['minLength']" style="color: red; margin-bottom: 1em;">Описанието трябва да бъде поне 10 символа!</div>
+                    <div *ngIf="form.get('description')?.errors?.['minlength']" style="color: red; margin-bottom: 1em;">Описанието трябва да бъде поне 10 символа!</div>
           </div>
                 <div class="btn">
                     <button [disabled]="form.invalid" [style]="{backgroundColor: form.invalid ? 'grey' : '#4caf50'}">Запазване</button>
     
                 </div>
             </form>
-            <div class="media"><img src={{garment.img}}
+            <div class="media"><img src={{garment.img!}}
                     alt="img"></div>
         </div>
     </div>

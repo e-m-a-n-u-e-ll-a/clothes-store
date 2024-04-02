@@ -27,18 +27,18 @@ router.post('/create', async (req, res) => {
 });
 
 router.get('/catalog/:garmentId', async (req, res) => {
-    let garment = await carService.getOne(req.params.garmentId);
+    let garment = await clothesService.getOne(req.params.garmentId);
 
     res.json(garment)
 });
 
 router.put('/catalog/:garmentId/edit', async (req, res) => {
-    await carService.updatee(req.params.garmentId, req.body);
+    await clothesService.updatee(req.params.garmentId, req.body);
     res.json({ ok: true })
 });
 
 router.delete('/catalog/:garmentId/delete', async (req, res) => {
-    await carService.delete(req.params.garmentId);
+    await clothesService.delete(req.params.garmentId);
     res.json({ ok: true })
 })
 

@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   constructor(private userService: UsererService, private router: Router) { }
   login(form: NgForm) {
-    console.log(form.value);
+   // console.log(form.value);
     if (form.invalid) {
       return;
     }
