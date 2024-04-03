@@ -14,22 +14,33 @@ export class UsererService implements OnDestroy {
   user: User | undefined;
   keyforUser = '[user]';
   userSub: Subscription
+
+ currentUser: any;
+
   get isLoggedIn(): boolean {
-   // console.log(this.user);
+    // console.log(this.user);
     return !!this.user
   }
   getUserId(): string | undefined {
     return this.user?._id;
   }
-  getUsereEmail(): string | undefined{
+  getUsereEmail(): string | undefined {
     return this.user?.email;
   }
+
+
+
   constructor(private http: HttpClient, private router: Router) {
     this.userSub = this.user$.subscribe(user => {
-      this.user = user
+      this.user = user;
     })
+    const token = localStorage.getItem('accessToken');
+    if (token) {
+      this.currentUser = jwt_decode(token);
 
   }
+}
+
   login(email: string, password: string): Observable<any> {
     return this.http.post<any>('http://localhost:3001/users/login', { email, password })
       .pipe(
@@ -71,7 +82,7 @@ export class UsererService implements OnDestroy {
     const url = `http://localhost:3001/users/${userId}/myposts`;
     const token = this.getToken();
     const headers = new HttpHeaders({
-      'X-Authorization': token !== null? token: ''
+      'X-Authorization': token !== null ? token : ''
     });
     return this.http.get<User>(url, { headers });
   }
@@ -79,10 +90,20 @@ export class UsererService implements OnDestroy {
   private removeToken(): void {
     localStorage.removeItem('accessToken');
   }
-  
+
   ngOnDestroy(): void {
     this.userSub.unsubscribe();
   }
+  getCurrentUser(): Observable<User | undefined> {
+    return this.user$
+    
+  };
 }
 
+
+function jwt_decode(token: string): any {
+  const payload = token.split('.')[1];
+  const decodedPayload = atob(payload);
+  return JSON.parse(decodedPayload);
+}
 

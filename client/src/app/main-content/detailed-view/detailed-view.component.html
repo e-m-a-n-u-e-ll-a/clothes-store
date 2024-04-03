@@ -14,7 +14,7 @@
             <p><strong>Описание:</strong> {{garment.description}}</p>
         </div>
     </div>
-        <div class="btns" *ngIf="isLogged">
+        <div class="btns" *ngIf="isLogged && isOwner()">
            <div class="edit"><button class="edit-btn" (click)="toggleEditForm()">Редактирай</button></div>
            <div class="delete"><button class="delete-btn" (click)="del()">Изтрий</button></div>
         </div>

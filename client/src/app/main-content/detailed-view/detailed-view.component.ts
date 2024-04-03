@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
 import { Detailed, Grament } from 'src/app/types/garment';
+import { User } from 'src/app/types/user';
 import { UsererService } from 'src/app/user/user.service';
 
 @Component({
@@ -12,6 +13,8 @@ import { UsererService } from 'src/app/user/user.service';
 })
 export class DetailedViewComponent implements OnInit {
   showEdit: boolean = false;
+  currentUser: User | undefined;
+  postOwnerId = ''
 
   garment: Grament = {
     _id: '',
@@ -68,16 +71,13 @@ export class DetailedViewComponent implements OnInit {
         console.error('Error updating garment:', error);
       }
     });
-
-
-
   }
 
   del() {
     const garmentId = this.getCurrentGarmentId()
     this.apiSerivce.deletePost(garmentId).subscribe({
       next: () => {
-this.router.navigate(['/catalog'])
+        this.router.navigate(['/catalog'])
       }
     }
 
@@ -106,6 +106,22 @@ this.router.navigate(['/catalog'])
         console.error('Error fetching garment:', error);
       }
     });
+    this.userService.getCurrentUser().subscribe({
+      next: (user: User | undefined) => {
+        this.currentUser = user;
+      }
+    });
+    this.getpostOwnerId();
+  }
+  getpostOwnerId() {
+    const id = this.getCurrentGarmentId();
+    return this.apiSerivce.getPost(id).subscribe({
+      next: (garment: Grament) =>
+        this.postOwnerId = garment._ownerId
+    })
+  }
+  isOwner(): boolean | undefined {
+    return this.currentUser && this.currentUser._id === this.postOwnerId;
   }
   getCurrentGarmentId(): string {
     return this.route.snapshot.paramMap.get('garmentId') || '';
