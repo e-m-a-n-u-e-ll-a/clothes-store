@@ -12,15 +12,22 @@ export class UsererService implements OnDestroy {
   private user$$ = new BehaviorSubject<User | undefined>(undefined);
   private user$ = this.user$$.asObservable();
   user: User | undefined;
-  keyforUser = '[user]';
   userSub: Subscription
 
- currentUser: any;
+  currentUser: any;
 
   get isLoggedIn(): boolean {
     // console.log(this.user);
     return !!this.user
   }
+  get isGuest() {
+    let token = this.getToken();
+    if (token) {
+      return false
+    }
+    return true
+  }
+  
   getUserId(): string | undefined {
     return this.user?._id;
   }
@@ -38,8 +45,8 @@ export class UsererService implements OnDestroy {
     if (token) {
       this.currentUser = jwt_decode(token);
 
+    }
   }
-}
 
   login(email: string, password: string): Observable<any> {
     return this.http.post<any>('http://localhost:3001/users/login', { email, password })
@@ -96,7 +103,7 @@ export class UsererService implements OnDestroy {
   }
   getCurrentUser(): Observable<User | undefined> {
     return this.user$
-    
+
   };
 }
 

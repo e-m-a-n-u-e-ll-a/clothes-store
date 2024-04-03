@@ -126,4 +126,6 @@ export class DetailedViewComponent implements OnInit {
   getCurrentGarmentId(): string {
     return this.route.snapshot.paramMap.get('garmentId') || '';
   }
+
+  
 }
