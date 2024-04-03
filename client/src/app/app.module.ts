@@ -13,6 +13,9 @@ import { ErrorComponent } from './error/error.component';
 import { CreateComponent } from './create/create.component';
 import { AppEmailDirective } from './user/app-email.directive';
 import { FormsModule } from '@angular/forms';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { ContactsComponent } from './contacts/contacts.component';
+
 
 @NgModule({
   declarations: [
@@ -21,6 +24,9 @@ import { FormsModule } from '@angular/forms';
     ClothesListComponent,
     ErrorComponent,
     CreateComponent,
+    AboutUsComponent,
+    ContactsComponent,
+
    
   ],
   imports: [

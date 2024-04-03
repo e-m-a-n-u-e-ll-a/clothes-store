@@ -12,7 +12,7 @@ let UserSchema = new mongoose.Schema({
     },
     posts:[ {
         type: mongoose.Types.ObjectId,
-        ref: 'Car'
+        ref: 'Garment'
     }]
 });
 

@@ -1,8 +1,9 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { User } from '../types/user';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable, Subscription, tap } from 'rxjs';
 import { Router } from '@angular/router';
+import { Grament } from '../types/garment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,14 @@ export class UsererService implements OnDestroy {
   keyforUser = '[user]';
   userSub: Subscription
   get isLoggedIn(): boolean {
-    console.log(this.user);
+   // console.log(this.user);
     return !!this.user
+  }
+  getUserId(): string | undefined {
+    return this.user?._id;
+  }
+  getUsereEmail(): string | undefined{
+    return this.user?.email;
   }
   constructor(private http: HttpClient, private router: Router) {
     this.userSub = this.user$.subscribe(user => {
@@ -37,6 +44,9 @@ export class UsererService implements OnDestroy {
   setToken(token: string): void {
     localStorage.setItem('accessToken', token);
   }
+  getToken(): string | null {
+    return localStorage.getItem('accessToken');
+  }
   register(email: string, password: string, rePass: string): Observable<any> {
     return this.http.post<any>('http://localhost:3001/users/register', { email, password, rePass })
       .pipe(
@@ -56,11 +66,23 @@ export class UsererService implements OnDestroy {
       }))
       ;
   }
+  getGarmentsByUserId(): Observable<User> {
+    const userId = this.getUserId()
+    const url = `http://localhost:3001/users/${userId}/myposts`;
+    const token = this.getToken();
+    const headers = new HttpHeaders({
+      'X-Authorization': token !== null? token: ''
+    });
+    return this.http.get<User>(url, { headers });
+  }
 
   private removeToken(): void {
     localStorage.removeItem('accessToken');
   }
+  
   ngOnDestroy(): void {
     this.userSub.unsubscribe();
   }
 }
+
+

@@ -1,0 +1,18 @@
+div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+img{
+    width: 50%;
+    height: 70vh;
+    display: block;
+}
+.paragraph{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 24px;
+}

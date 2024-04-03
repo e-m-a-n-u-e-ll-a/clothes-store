@@ -2,13 +2,13 @@ let jwt = require('jsonwebtoken');
 let { SECRET } = require('../constants');
 exports.auth = function (req, res, next) {
     let token = req.header('X-Authorization');
-   // console.log(token);
+    //console.log(token);
 
     if (token) {
         let decodedToken = jwt.verify(token, SECRET);
         if (decodedToken) {
             req.user = decodedToken;
-
+           // console.log(req.user);
             next();
         } else {
             res.status(401).json('You are not authorized!');

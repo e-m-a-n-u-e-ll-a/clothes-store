@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Grament } from './types/garment';
+import { Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,25 +13,14 @@ export class ApiService {
     return this.http.get<Grament[]>(api);
 
   }
-  createPost(
-    model: string,
-    img: string,
-    color: string,
-    price: string,
-    type: string,
-    size: string,
-    description: string,) {
+  createPost(data: Partial<Grament>): Observable<Grament> {
     const api = 'http://localhost:3001/data/create';
-    let payload = {
-      model,
-      img,
-      color,
-      price,
-      type,
-      size,
-      description
-    }
-    return this.http.post<Grament>(api, payload);
+    const token = localStorage.getItem('accessToken');
+
+    const headers = new HttpHeaders().set('X-Authorization', `${token}`);
+    const options = { headers };
+
+    return this.http.post<Grament>(api, data, options)
   }
   getPost(_id: string) {
     const api = `http://localhost:3001/data/catalog/${_id}`;

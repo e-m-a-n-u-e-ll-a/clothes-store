@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppEmailDirective } from './app-email.directive';
 import { UsererService } from './user.service';
 import { MainComponent } from '../main-content/main/main.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 
@@ -15,7 +16,8 @@ import { MainComponent } from '../main-content/main/main.component';
   declarations: [
     LoginComponent,
     RegisterComponent,
-    AppEmailDirective
+    AppEmailDirective,
+    ProfileComponent
   ],
   providers: [UsererService],
   imports: [

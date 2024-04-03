@@ -11,7 +11,6 @@ export class ClothesListComponent implements OnInit {
   clothes: Grament[] = [];
   constructor(private api: ApiService) {
 
-
   }
   ngOnInit(): void {
     this.api.getClothes().subscribe(clothes => {

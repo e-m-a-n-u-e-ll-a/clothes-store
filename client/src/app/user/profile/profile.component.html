@@ -1,0 +1,17 @@
+<div class="greeting">Hello, {{email}}!</div>
+<div class="number" *ngIf="user.posts.length>0">You are listing {{user.posts.length}} items for sale!</div>
+<div class="container">
+    <div class="empty" *ngIf="user.posts.length===0">You haven't listed any items for sale yet!</div>
+    <div *ngFor="let garment of user.posts" class="catalog">
+        <div class="item">
+            <div class="media"><img src={{garment.img}} alt="Clothes 1"></div>
+            <div class="content">
+                <div class="type">Вид: {{garment.model}}</div>
+                <div class="description">Цвят: {{garment.color}}</div>
+                <div class="price">Цена: {{garment.price}}BGN</div>
+                <div class="type">Пол: {{garment.gender}}</div>
+                <div class="btn"><a routerLink="/catalog/{{garment._id}}">Вижте повече...</a></div>
+            </div>
+
+        </div>
+    </div>

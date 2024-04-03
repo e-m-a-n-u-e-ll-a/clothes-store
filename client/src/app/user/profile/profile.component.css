@@ -1,0 +1,89 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 1600px;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+}
+.empty{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15em;
+    font-size: 26px;
+    font-weight: bold;
+    font-style: italic;
+}
+.number{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2em;
+    font-weight: bold;
+    font-size: 26px;
+    font-style: italic; 
+}
+.greeting{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2em;
+    font-weight: bold;
+    font-size: 26px;
+    font-style: italic;
+}
+.catalog {
+    padding: 20px;
+}
+
+.item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    gap: 2em;
+}
+
+.item img {
+    display: block;
+    width: 300px;
+    height: 40vh;
+    border-radius: 5px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+
+.item .description {
+    font-weight: bold;
+}
+
+.item .price {
+    font-weight: bold;
+    color: #333;
+}
+.item .type{
+    font-weight: bold;
+}
+
+.item .comments {
+    
+}
+.btn{
+    margin-top: 2em;
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    border-radius: 1em;
+    padding: 0.6em;
+}
+.btn a{
+    text-decoration: none;
+    color: white;
+}
