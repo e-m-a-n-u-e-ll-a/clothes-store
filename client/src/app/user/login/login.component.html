@@ -2,8 +2,8 @@
     <h2>Вход</h2>
     <form #form="ngForm" (ngSubmit)="login(form)">
         <p><input type="text" placeholder="E-mail" name="email" ngModel #email="ngModel" required
-                [appAppEmail]="['.bg', '.com']"></p>
-        <div *ngIf="email.touched">
+            [appAppEmail]="['.bg', '.com']"></p>
+            <div *ngIf="email.touched">
             <div *ngIf="email.errors?.['required']" style="color: red; margin-bottom: 2em;">Полето е задължително</div>
             <div *ngIf="email.errors?.['emailValidator']" style="color: red;">Невалиден имейл адрес</div>
         </div>
@@ -13,6 +13,7 @@
             <div *ngIf="password.errors?.['required']" style="color: red; margin-bottom: 2em;">Полето е задължително</div>
             <div *ngIf="password.errors?.['minlength']" style="color: red; margin-bottom: 2em;">Паролата трябва да бъде поне 7 символа!</div>
         </div>
+        <div *ngIf="errorMessage" style="color: red; margin-bottom: 2em;">Invalid email or password</div>
         <div class="btn"><button [disabled]="form.invalid" [style]="{backgroundColor: form.invalid ? 'grey' : '#4caf50'}">Вход</button></div>  
     </form>
     <div class="link">
