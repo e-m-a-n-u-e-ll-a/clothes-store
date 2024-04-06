@@ -10,7 +10,12 @@ import { UsererService } from 'src/app/user/user.service';
 })
 export class HeaderComponent {
   get isLogged(): boolean {
-    return this.userService.isLoggedIn
+    if(this.userService.isLoggedForNavbar){
+
+      return true
+    }else{
+      return false
+    }
   }
  get userId(): string | undefined{
   return this.userService.getUserId()

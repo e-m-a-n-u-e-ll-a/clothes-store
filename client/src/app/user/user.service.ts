@@ -22,12 +22,15 @@ export class UsererService implements OnDestroy {
   }
   get isGuest() {
     let token = this.getToken();
-    if (token) {
-      return false
-    }
-    return true
+   // console.log(token)
+    return token
   }
-  
+  get isLoggedForNavbar() {
+    let token = this.getToken();
+    //console.log(token)
+    return token
+  }
+
   getUserId(): string | undefined {
     return this.user?._id;
   }
@@ -69,8 +72,9 @@ export class UsererService implements OnDestroy {
     return this.http.post<any>('http://localhost:3001/users/register', { email, password, rePass })
       .pipe(
         tap((response: any) => {
+         // console.log(response)
           const token = response.accessToken;
-          this.setToken(token);
+          this.setToken(token.token);
         }),
         (tap((user) => this.user$$.next(user)))
       )

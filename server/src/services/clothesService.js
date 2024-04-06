@@ -8,7 +8,7 @@ exports.getOne = (id) => Garment.findById(id);
 
 exports.update = (id, data) => Garment.findByIdAndUpdate(id, { $push: { comments: data } });
 
-exports.updateWithComments = (id, data) => Garment.findByIdAndUpdate(id, { $push: { comments: data } })
+exports.updateWithComments = (id, data) => Garment.findByIdAndUpdate(id, { $push: { comments: data } }).populate('comments')
 
 exports.delete = (id) => Garment.findByIdAndDelete(id);
 exports.updatee = (id, body) => Garment.findByIdAndUpdate(id, body)

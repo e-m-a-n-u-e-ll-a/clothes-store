@@ -136,7 +136,12 @@ button:hover {
 button[disabled] {
     cursor: not-allowed;
 }
-
+.emailsp{
+    font-weight: bold;
+}
+.textsp{
+    font-weight: bold;
+}
 div.media {
     display: flex;
     justify-content: center;

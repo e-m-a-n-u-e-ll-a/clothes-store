@@ -5,6 +5,8 @@ import { ApiService } from 'src/app/api.service';
 import { Detailed, Grament } from 'src/app/types/garment';
 import { User } from 'src/app/types/user';
 import { UsererService } from 'src/app/user/user.service';
+import { Comment } from 'src/app/types/comment';
+
 
 @Component({
   selector: 'app-detailed-view',
@@ -29,6 +31,15 @@ export class DetailedViewComponent implements OnInit {
     _ownerId: ''
   };
 
+  comments: Comment[] = [];
+  comment: Comment = {
+    _id: '',
+    email: '',
+    text: '',
+    garmentId: ''
+
+  }
+
   form = this.fb.group({
     model: [this.garment?.model || undefined, [Validators.required]],
     img: [this.garment?.img || undefined, [Validators.required]],
@@ -38,6 +49,10 @@ export class DetailedViewComponent implements OnInit {
     size: [this.garment?.size || undefined, [Validators.required]],
     description: [this.garment?.description || undefined, [Validators.required, Validators.minLength(10)]]
   })
+  commentForm = this.fb.group({
+    comment: [this.comment.text || undefined, [Validators.required]]
+  })
+
   toggleEditForm() {
     this.showEdit = true;
   }
@@ -83,6 +98,28 @@ export class DetailedViewComponent implements OnInit {
 
     )
   }
+  addComment() {
+  //  console.log('clicked')
+    const garmentId = this.getCurrentGarmentId();
+    let userEmail = this.currentUser?.email
+
+    const data: Partial<Comment> = {
+      email: userEmail,
+      text: this.commentForm.value.comment || undefined,
+      garmentId: garmentId
+    }
+    this.apiSerivce.addComment(garmentId, data).subscribe({
+      next: (comment) => {
+      //  this.garment.comments.push(comment)
+        this.apiSerivce.getPostsComments(garmentId).subscribe({
+          next: (comments) => {
+            this.comments = comments
+          }
+        })
+      }
+    })
+
+  }
 
   constructor(private fb: FormBuilder, private router: Router, private userService: UsererService, private apiSerivce: ApiService, private route: ActivatedRoute) { }
 
@@ -112,6 +149,13 @@ export class DetailedViewComponent implements OnInit {
       }
     });
     this.getpostOwnerId();
+    this.apiSerivce.getPostsComments(garmentId).subscribe({
+      next: (comments) => {
+        this.comments = comments
+      }
+    })
+
+
   }
   getpostOwnerId() {
     const id = this.getCurrentGarmentId();
@@ -127,5 +171,5 @@ export class DetailedViewComponent implements OnInit {
     return this.route.snapshot.paramMap.get('garmentId') || '';
   }
 
-  
+
 }

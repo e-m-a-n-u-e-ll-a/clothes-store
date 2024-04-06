@@ -10,8 +10,8 @@ import { NotAuthenticated } from './isGuest';
 
 
 const routes: Routes = [
-    { path: 'login', component: LoginComponent },
-    { path: 'register', component: RegisterComponent},
+    { path: 'login', component: LoginComponent,canActivate:[NotAuthenticated] },
+    { path: 'register', component: RegisterComponent,canActivate: [NotAuthenticated]},
     { path: ':id/myposts', component: ProfileComponent }
 
 ];

@@ -13,10 +13,10 @@ export class NotAuthenticated implements CanActivate{
         
         console.log('NotAuthenticated Guard Triggered');
 
-        if (!this.userService.isGuest) {
+        if (this.userService.isGuest) {
             console.log('User is already logged in. Redirecting...');
         
-            return this.router.createUrlTree(['/']);
+            return this.router.createUrlTree(['/catalog']);
         } else {
             console.log('User is not logged in. Allowing access to the route.');
             return true;

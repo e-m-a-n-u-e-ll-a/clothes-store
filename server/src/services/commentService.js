@@ -1,4 +1,4 @@
 let Comment = require('../models/Comment');
-let Car = require('../models/Garment');
+let Garment = require('../models/Garment');
 exports.create = (commentData) => Comment.create(commentData);
-exports.getCommentsByCarId = (carId) => Comment.find({ carId });
+exports.getCommentsByGarmentId = (garmentId) => Comment.find({ garmentId });

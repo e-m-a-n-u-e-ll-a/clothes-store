@@ -43,12 +43,12 @@ router.delete('/catalog/:garmentId/delete', async (req, res) => {
 
 
 router.get('/catalog/:garmentId/comments', async (req, res) => {
-    let comments = await commentService.getCommentsByCarId(req.params.garmentId);
+    let comments = await commentService.getCommentsByGarmentId(req.params.garmentId);
     res.json(comments)
 });
 router.post('/catalog/:garmentId/comments', async (req, res) => {
     let data = req.body;
-    let garmentId = req.params.carId;
+    let garmentId = req.params.garmentId;
     console.log(garmentId);
 
     let commentData = {
@@ -59,7 +59,7 @@ router.post('/catalog/:garmentId/comments', async (req, res) => {
 
     let comment = await commentService.create(commentData);
 
-    await garmentService.updateWithComments(garmentId, comment);
+    await clothesService.updateWithComments(garmentId, comment);
 
     res.json(comment);
 
