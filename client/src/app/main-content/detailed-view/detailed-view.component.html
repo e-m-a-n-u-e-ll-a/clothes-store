@@ -35,7 +35,8 @@
                     Моля добавете
                     валиден коментар!</div>
             </div>
-            <button>Добавете коментар</button>
+            <button [disabled]="form.invalid"
+            [style]="{backgroundColor: form.invalid ? 'grey' : '#4caf50'}">Добавете коментар</button>
         </form>
     </div>
 </div>

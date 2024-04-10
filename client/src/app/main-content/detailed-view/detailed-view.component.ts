@@ -107,18 +107,20 @@ export class DetailedViewComponent implements OnInit {
     const garmentId = this.getCurrentGarmentId();
     let userEmail = this.currentUser?.email;
     this.submitted = true;
-    
-    
+    if (this.commentForm.invalid) {
+      return;
+    }
+
     const data: Partial<Comment> = {
       email: userEmail,
       text: this.commentForm.value.comment || undefined,
       garmentId: garmentId
     }
     this.apiSerivce.addComment(garmentId, data).subscribe({
+
       next: (comment) => {
-        if (this.commentForm.invalid) {
-          return; }
         //  this.garment.comments.push(comment)
+           this.submitted=false
         this.commentForm.reset()
         this.apiSerivce.getPostsComments(garmentId).subscribe({
           next: (comments) => {
