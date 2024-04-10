@@ -5,6 +5,7 @@ import { ClothesListComponent } from './clothes-list/clothes-list.component';
 import { DetailedViewComponent } from './detailed-view/detailed-view.component';
 import { AboutUsComponent } from '../about-us/about-us.component';
 import { ContactsComponent } from '../contacts/contacts.component';
+import { ErrorComponent } from '../error/error.component';
 
 const routes: Routes = [
   { path: '', component: MainComponent },
@@ -12,6 +13,8 @@ const routes: Routes = [
     path: 'catalog',
     children: [
       { path: '', pathMatch: 'full', component: ClothesListComponent },
+      {path: 'login', component: ErrorComponent},
+      {path: 'register', component: ErrorComponent},
       { path: ':garmentId', component: DetailedViewComponent }
     ]
   },

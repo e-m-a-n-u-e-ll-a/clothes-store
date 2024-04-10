@@ -16,7 +16,8 @@ import { Comment } from 'src/app/types/comment';
 export class DetailedViewComponent implements OnInit {
   showEdit: boolean = false;
   currentUser: User | undefined;
-  postOwnerId = ''
+  postOwnerId = '';
+  submitted: boolean = false;
 
   garment: Grament = {
     _id: '',
@@ -93,16 +94,21 @@ export class DetailedViewComponent implements OnInit {
     this.apiSerivce.deletePost(garmentId).subscribe({
       next: () => {
         this.router.navigate(['/catalog'])
+      },
+      error: (err) => {
+        console.error(err)
       }
     }
 
     )
   }
   addComment() {
-  //  console.log('clicked')
+    //  console.log('clicked')
     const garmentId = this.getCurrentGarmentId();
-    let userEmail = this.currentUser?.email
-
+    let userEmail = this.currentUser?.email;
+    this.submitted = true;
+    
+    
     const data: Partial<Comment> = {
       email: userEmail,
       text: this.commentForm.value.comment || undefined,
@@ -110,12 +116,21 @@ export class DetailedViewComponent implements OnInit {
     }
     this.apiSerivce.addComment(garmentId, data).subscribe({
       next: (comment) => {
-      //  this.garment.comments.push(comment)
+        if (this.commentForm.invalid) {
+          return; }
+        //  this.garment.comments.push(comment)
+        this.commentForm.reset()
         this.apiSerivce.getPostsComments(garmentId).subscribe({
           next: (comments) => {
             this.comments = comments
+          },
+          error: (err) => {
+            console.error(err)
           }
         })
+      },
+      error: (err) => {
+        console.error(err)
       }
     })
 
@@ -146,12 +161,18 @@ export class DetailedViewComponent implements OnInit {
     this.userService.getCurrentUser().subscribe({
       next: (user: User | undefined) => {
         this.currentUser = user;
+      },
+      error: (err) => {
+        console.error(err);
       }
     });
     this.getpostOwnerId();
     this.apiSerivce.getPostsComments(garmentId).subscribe({
       next: (comments) => {
         this.comments = comments
+      },
+      error: (err) => {
+        console.error(err);
       }
     })
 
@@ -160,8 +181,12 @@ export class DetailedViewComponent implements OnInit {
   getpostOwnerId() {
     const id = this.getCurrentGarmentId();
     return this.apiSerivce.getPost(id).subscribe({
-      next: (garment: Grament) =>
+      next: (garment: Grament) => {
         this.postOwnerId = garment._ownerId
+      },
+      error: (err) => {
+        console.error(err);
+      }
     })
   }
   isOwner(): boolean | undefined {

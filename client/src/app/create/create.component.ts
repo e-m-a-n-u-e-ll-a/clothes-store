@@ -41,11 +41,13 @@ export class CreateComponent {
     }
     this.api.createPost(data).subscribe({
       next: () => {
-              this.router.navigate(['/catalog'])
+        this.router.navigate(['/catalog'])
+      },
+      error: (err) => {
+        console.log(err)
       }
     })
 
-    this.router.navigate(['/catalog'])
   }
 
 

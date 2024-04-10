@@ -26,6 +26,10 @@
         <form [formGroup]="commentForm" (ngSubmit)="addComment()">
             <label for="email" style="margin-top: 2em;">{{currentUser.email}}</label>
             <textarea name="comment" id="comment" placeholder="Добавете коментар" formControlName="comment"></textarea>
+            <div *ngIf="submitted && commentForm.get('comment')?.errors?.['required']" style="color: red; margin-bottom: 1em;">
+                Моля добавете валиден коментар!
+              </div>
+              
             <div *ngIf="commentForm.get('comment')?.touched">
                 <div *ngIf="commentForm.get('comment')?.errors?.['required']" style="color: red; margin-bottom: 1em;">
                     Моля добавете

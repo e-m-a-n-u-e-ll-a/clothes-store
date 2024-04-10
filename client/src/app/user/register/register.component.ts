@@ -23,8 +23,13 @@ export class RegisterComponent {
       return
     }
     let { email, passGroup: { password, rePass } = {} } = this.form.value
-    this.userService.register(email!, password!, rePass!).subscribe(() => {
-       this.router.navigate(['/catalog'])
+    this.userService.register(email!, password!, rePass!).subscribe({
+      next: () => {
+        this.router.navigate(['/catalog'])
+      },
+      error: (err) => {
+        console.error(err);
+      }
     })
   }
 }
